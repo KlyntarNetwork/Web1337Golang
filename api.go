@@ -24,8 +24,8 @@ func (sdk *Web1337) GetLatestNBlocksOnShard(shard string, startIndex uint, limit
 	return sdk.getRequest("/latest_n_blocks/" + shard + "/" + startIndexStr + "/" + limitStr)
 }
 
-func (sdk *Web1337) GetTotalBlocksAndTxsStats() ([]byte, error) {
-	return sdk.getRequest("/total_blocks_and_txs_stats")
+func (sdk *Web1337) GetVerificationThreadStats() ([]byte, error) {
+	return sdk.getRequest("/verification_thread_stats")
 }
 
 /*
@@ -45,10 +45,10 @@ func (sdk *Web1337) GetEpochByIndex(epochIndex uint) ([]byte, error) {
 	return sdk.getRequest("/epoch_by_index/" + epochIndexStr)
 }
 
-func (sdk *Web1337) GetTotalBlocksAndTxsByEpochIndex(epochIndex uint) ([]byte, error) {
+func (sdk *Web1337) GetVerificationThreadStatsPerEpoch(epochIndex uint) ([]byte, error) {
 	epochIndexStr := strconv.FormatUint(uint64(epochIndex), 10)
 
-	return sdk.getRequest("/total_blocks_and_txs_stats_per_epoch/" + epochIndexStr)
+	return sdk.getRequest("/verification_thread_stats_per_epoch/" + epochIndexStr)
 }
 
 func (sdk *Web1337) GetHistoricalStatsPerEpoch(startIndex uint, limit uint) ([]byte, error) {
@@ -65,7 +65,7 @@ func (sdk *Web1337) GetTransactionReceipt(txID string) ([]byte, error) {
 	return sdk.getRequest("/tx_receipt/" + txID)
 }
 
-func (sdk *Web1337) GetTransactionsList(shardID string, accountID string) ([]byte, error) {
+func (sdk *Web1337) GetTransactionsWithAccount(shardID string, accountID string) ([]byte, error) {
 	return sdk.getRequest("/txs_list/" + shardID + "/" + accountID)
 }
 
