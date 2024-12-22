@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/KLYN74R/Web1337Golang/crypto_primitives/tbls"
+	"github.com/KlyntarNetwork/Web1337Golang/crypto_primitives/tbls"
 )
 
 func TestThresholdTransaction(t *testing.T) {

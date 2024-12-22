@@ -1,4 +1,4 @@
-module github.com/KLYN74R/Web1337Golang
+module github.com/KlyntarNetwork/Web1337Golang
 
 go 1.21.1
 

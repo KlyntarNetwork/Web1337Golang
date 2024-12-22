@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	web1337 "github.com/KLYN74R/Web1337Golang"
+	web1337 "github.com/KlyntarNetwork/Web1337Golang"
 )
 
 func TestGetInfrastructureInfo(t *testing.T) {

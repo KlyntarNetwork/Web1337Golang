@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/KLYN74R/Web1337Golang/crypto_primitives/pqc"
+	"github.com/KlyntarNetwork/Web1337Golang/crypto_primitives/pqc"
 )
 
 func TestDilithiumTransaction(t *testing.T) {
@@ -13,9 +13,9 @@ func TestDilithiumTransaction(t *testing.T) {
 	pubKey, prvKey := pqc.GenerateDilithiumKeypair()
 
 	var (
-		shardID     = "2VEzwUdvSRuv1k2JaAEaMiL7LLNDTUf9bXSapqccCcSb"
-		recipient   = "nXSYHp74u88zKPiRi7t22nv4WCBHXUBpGrVw3V93f2s"
-		from        = pubKey
+		shardID      = "2VEzwUdvSRuv1k2JaAEaMiL7LLNDTUf9bXSapqccCcSb"
+		recipient    = "nXSYHp74u88zKPiRi7t22nv4WCBHXUBpGrVw3V93f2s"
+		from         = pubKey
 		myPrivateKey = prvKey
 		message      = fmt.Sprintf("%v%v%v%v%v%v", shardID, from, 0, 0.005, recipient, 0.2)
 	)
@@ -44,9 +44,9 @@ func TestBlissTransaction(t *testing.T) {
 	pubKey, prvKey := pqc.GenerateBlissKeypair()
 
 	var (
-		shardID     = "2VEzwUdvSRuv1k2JaAEaMiL7LLNDTUf9bXSapqccCcSb"
-		recipient   = "nXSYHp74u88zKPiRi7t22nv4WCBHXUBpGrVw3V93f2s"
-		from        = pubKey
+		shardID      = "2VEzwUdvSRuv1k2JaAEaMiL7LLNDTUf9bXSapqccCcSb"
+		recipient    = "nXSYHp74u88zKPiRi7t22nv4WCBHXUBpGrVw3V93f2s"
+		from         = pubKey
 		myPrivateKey = prvKey
 		message      = fmt.Sprintf("%v%v%v%v%v%v", shardID, from, 0, 0.005, recipient, 0.2)
 	)

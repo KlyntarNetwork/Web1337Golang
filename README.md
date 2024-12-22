@@ -26,7 +26,7 @@ Currently supports only <code>dev_tachyon</code> workflow
 ## Installation
 
 ```shell
-go get -u github.com/KLYN74R/Web1337Golang
+go get -u github.com/KlyntarNetwork/Web1337Golang
 ```
 
 
