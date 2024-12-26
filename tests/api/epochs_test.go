@@ -73,7 +73,7 @@ func TestGetTotalBlocksAndTxsByEpochIndex(t *testing.T) {
 
 	epochIndex := uint(0)
 
-	blockAndTxStats, err := sdkHandler.GetTotalBlocksAndTxsByEpochIndex(epochIndex)
+	blockAndTxStats, err := sdkHandler.GetVerificationThreadStatsPerEpoch(epochIndex)
 	if err != nil {
 		t.Fatalf("Error fetching total blocks and txs by epoch index: %v", err)
 	}

@@ -38,7 +38,7 @@ func TestGetTransactionsList(t *testing.T) {
 	shardID := "shard_0"
 	accountID := "4218fb0aaace62c4bfafbdd9adb05b99a9bf1a33eeae074215a51cb644b9a85c"
 
-	txList, err := sdkHandler.GetTransactionsList(shardID, accountID)
+	txList, err := sdkHandler.GetTransactionsWithAccount(shardID, accountID)
 	if err != nil {
 		t.Fatalf("Error fetching transactions list: %v", err)
 	} else {

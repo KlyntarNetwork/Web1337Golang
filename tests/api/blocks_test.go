@@ -69,7 +69,7 @@ func TestGetLatestNBlocksOnShard(t *testing.T) {
 	fmt.Println("Result: ", string(blockData))
 }
 
-func TestGetTotalBlocksAndTxsStats(t *testing.T) {
+func TestGetTotalVerificationThreadStats(t *testing.T) {
 	myOptions := web1337.Options{
 		NodeURL:         "http://localhost:7332",
 		ChainID:         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -78,7 +78,7 @@ func TestGetTotalBlocksAndTxsStats(t *testing.T) {
 
 	sdkHandler, _ := web1337.NewWeb1337(myOptions)
 
-	blockAndTxInfo, err := sdkHandler.GetTotalBlocksAndTxsStats()
+	blockAndTxInfo, err := sdkHandler.GetVerificationThreadStats()
 
 	if err != nil {
 		t.Fatalf("Error fetching total blocks and transactions stats: %v", err)
