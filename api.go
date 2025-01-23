@@ -11,17 +11,17 @@ func (sdk *Web1337) GetBlockByBlockID(blockID string) ([]byte, error) {
 	return sdk.getRequest("/block/" + blockID)
 }
 
-func (sdk *Web1337) GetBlockBySID(shard string, indexInShard uint) ([]byte, error) {
-	indexInShardStr := strconv.FormatUint(uint64(indexInShard), 10)
+func (sdk *Web1337) GetBlockBySID(index uint) ([]byte, error) {
+	indexInShardStr := strconv.FormatUint(uint64(index), 10)
 
-	return sdk.getRequest("/block_by_sid/" + shard + "/" + indexInShardStr)
+	return sdk.getRequest("/block_by_sid/" + indexInShardStr)
 }
 
-func (sdk *Web1337) GetLatestNBlocksOnShard(shard string, startIndex uint, limit uint) ([]byte, error) {
+func (sdk *Web1337) GetLatestNBlocks(startIndex uint, limit uint) ([]byte, error) {
 	startIndexStr := strconv.FormatUint(uint64(startIndex), 10)
 	limitStr := strconv.FormatUint(uint64(limit), 10)
 
-	return sdk.getRequest("/latest_n_blocks/" + shard + "/" + startIndexStr + "/" + limitStr)
+	return sdk.getRequest("/latest_n_blocks/" + startIndexStr + "/" + limitStr)
 }
 
 func (sdk *Web1337) GetVerificationThreadStats() ([]byte, error) {
@@ -35,8 +35,8 @@ func (sdk *Web1337) GetCurrentEpochOnThreads(threadID string) ([]byte, error) {
 	return sdk.getRequest("/current_epoch/" + threadID)
 }
 
-func (sdk *Web1337) GetCurrentShardLeaders() ([]byte, error) {
-	return sdk.getRequest("/current_shards_leaders")
+func (sdk *Web1337) GetCurrentLeader() ([]byte, error) {
+	return sdk.getRequest("/current_leader")
 }
 
 func (sdk *Web1337) GetEpochByIndex(epochIndex uint) ([]byte, error) {
@@ -65,23 +65,23 @@ func (sdk *Web1337) GetTransactionReceipt(txID string) ([]byte, error) {
 	return sdk.getRequest("/tx_receipt/" + txID)
 }
 
-func (sdk *Web1337) GetTransactionsWithAccount(shardID string, accountID string) ([]byte, error) {
-	return sdk.getRequest("/txs_list/" + shardID + "/" + accountID)
+func (sdk *Web1337) GetTransactionsWithAccount(accountID string) ([]byte, error) {
+	return sdk.getRequest("/txs_list/" + accountID)
 }
 
 /*
 State
 */
-func (sdk *Web1337) GetDataFromState(shard string, cellID string) ([]byte, error) {
-	return sdk.getRequest("/state/" + shard + "/" + cellID)
+func (sdk *Web1337) GetDataFromState(cellID string) ([]byte, error) {
+	return sdk.getRequest("/state/" + cellID)
 }
 
 func (sdk *Web1337) GetPoolStats(poolID string) ([]byte, error) {
 	return sdk.getRequest("/pool_stats/" + poolID)
 }
 
-func (sdk *Web1337) GetAccountFromState(shard string, accountID string) ([]byte, error) {
-	return sdk.getRequest("/account/" + shard + "/" + accountID)
+func (sdk *Web1337) GetAccountFromState(accountID string) ([]byte, error) {
+	return sdk.getRequest("/account/" + accountID)
 }
 
 /*
@@ -91,9 +91,9 @@ func (sdk *Web1337) GetAggregatedFinalizationProof(blockID string) ([]byte, erro
 	return sdk.getRequest("/aggregated_finalization_proof/" + blockID)
 }
 
-func (sdk *Web1337) GetAggregatedEpochFinalizationProof(epochIndex uint, shard string) ([]byte, error) {
+func (sdk *Web1337) GetAggregatedEpochFinalizationProof(epochIndex uint) ([]byte, error) {
 	epochIndexStr := strconv.FormatUint(uint64(epochIndex), 10)
-	return sdk.getRequest("/aggregated_epoch_finalization_proof/" + epochIndexStr + "/" + shard)
+	return sdk.getRequest("/aggregated_epoch_finalization_proof/" + epochIndexStr)
 }
 
 /*

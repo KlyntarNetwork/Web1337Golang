@@ -26,7 +26,7 @@ func TestGetCurrentEpochOnThreads(t *testing.T) {
 	fmt.Println("Result: ", string(epochData))
 }
 
-func TestGetCurrentShardLeaders(t *testing.T) {
+func TestGetCurrentLeader(t *testing.T) {
 	myOptions := web1337.Options{
 		NodeURL:         "http://localhost:7332",
 		ChainID:         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -35,12 +35,12 @@ func TestGetCurrentShardLeaders(t *testing.T) {
 
 	sdkHandler, _ := web1337.NewWeb1337(myOptions)
 
-	shardLeaders, err := sdkHandler.GetCurrentShardLeaders()
+	leader, err := sdkHandler.GetCurrentLeader()
 	if err != nil {
-		t.Fatalf("Error fetching current shard leaders: %v", err)
+		t.Fatalf("Error fetching current leader: %v", err)
 	}
 
-	fmt.Println("Result: ", string(shardLeaders))
+	fmt.Println("Result: ", string(leader))
 }
 
 func TestGetEpochByIndex(t *testing.T) {

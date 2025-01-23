@@ -16,10 +16,9 @@ func TestGetDataFromState(t *testing.T) {
 
 	sdkHandler, _ := web1337.NewWeb1337(myOptions)
 
-	shard := "shard_0"
 	cellID := "0xb2ec32c9d7216163790ba3628a6a6b5a12db457c933b1f4627775b6dae468636233c6ad9931a8ef848a58353e60d33dd"
 
-	data, err := sdkHandler.GetDataFromState(shard, cellID)
+	data, err := sdkHandler.GetDataFromState(cellID)
 	if err != nil {
 		t.Fatalf("Error fetching data from state: %v", err)
 	} else {
@@ -55,10 +54,9 @@ func TestGetAccountFromState(t *testing.T) {
 
 	sdkHandler, _ := web1337.NewWeb1337(myOptions)
 
-	shard := "shard_0"
 	accountID := "0x8f079049121d5e2ae885bdc6581df9fb68eab94a7aa3ae54bfe1d1ac35aceefbb202f656b0c1b56d64583630612a9970"
 
-	accountData, err := sdkHandler.GetAccountFromState(shard, accountID)
+	accountData, err := sdkHandler.GetAccountFromState(accountID)
 	if err != nil {
 		t.Fatalf("Error fetching account from state: %v", err)
 	} else {

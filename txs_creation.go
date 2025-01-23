@@ -35,13 +35,13 @@ func (web1337 *Web1337) GetTransactionTemplate(workflowVersion uint, creator, tx
 	}
 }
 
-func (web1337 *Web1337) CreateEd25519Transaction(originShard, txType, yourAddress, base64PrivateKey string, nonce uint, fee string, payload map[string]interface{}) (TransactionTemplate, error) {
+func (web1337 *Web1337) CreateEd25519Transaction(txType, yourAddress, base64PrivateKey string, nonce uint, fee string, payload map[string]interface{}) (TransactionTemplate, error) {
 
 	coreWorkflowVersion := web1337.Chains[web1337.CurrentChain].WorkflowVersion
 
 	txTemplate := web1337.GetTransactionTemplate(coreWorkflowVersion, yourAddress, txType, SIGNATURES_TYPES.DEFAULT_SIG, nonce, fee, payload)
 
-	dataToSign := web1337.CurrentChain + string(coreWorkflowVersion) + originShard + txType + mapToJSON(payload) + string(nonce) + fee
+	dataToSign := web1337.CurrentChain + string(coreWorkflowVersion) + txType + mapToJSON(payload) + string(nonce) + fee
 
 	txTemplate.Sig = ed25519.GenerateSignature(base64PrivateKey, dataToSign)
 
@@ -50,11 +50,11 @@ func (web1337 *Web1337) CreateEd25519Transaction(originShard, txType, yourAddres
 	return txTemplate, nil
 }
 
-func (web1337 *Web1337) SignDataForMultisigTransaction(originShard, txType, blsPrivateKey string, nonce uint, fee string, payload map[string]interface{}) string {
+func (web1337 *Web1337) SignDataForMultisigTransaction(txType, blsPrivateKey string, nonce uint, fee string, payload map[string]interface{}) string {
 
 	coreWorkflowVersion := web1337.Chains[web1337.CurrentChain].WorkflowVersion
 
-	dataToSign := web1337.CurrentChain + string(coreWorkflowVersion) + originShard + txType + mapToJSON(payload) + string(nonce) + fee
+	dataToSign := web1337.CurrentChain + string(coreWorkflowVersion) + txType + mapToJSON(payload) + string(nonce) + fee
 
 	blsSingleSigna := bls.GenerateSignature(blsPrivateKey, dataToSign)
 
@@ -73,11 +73,11 @@ func (web1337 *Web1337) CreateMultisigTransaction(txType, rootPubKey, aggregated
 	return multisigTransaction
 }
 
-func (web1337 *Web1337) BuildPartialSignatureWithTxData(originShard, txType, hexID string, sharedPayload []string, nonce uint, fee string, payload map[string]interface{}) (string, error) {
+func (web1337 *Web1337) BuildPartialSignatureWithTxData(txType, hexID string, sharedPayload []string, nonce uint, fee string, payload map[string]interface{}) (string, error) {
 
 	coreWorkflowVersion := web1337.Chains[web1337.CurrentChain].WorkflowVersion
 
-	dataToSign := fmt.Sprintf("%s%d%s%s%s%d%d", web1337.CurrentChain, coreWorkflowVersion, originShard, txType, mapToJSON(payload), nonce, fee)
+	dataToSign := fmt.Sprintf("%s%d%s%s%d%d", web1337.CurrentChain, coreWorkflowVersion, txType, mapToJSON(payload), nonce, fee)
 
 	partialSignature := tbls.GeneratePartialSignature(hexID, dataToSign, sharedPayload)
 
@@ -95,7 +95,7 @@ func (sdk *Web1337) CreateThresholdTransaction(txType, tblsRootPubkey string, pa
 	return thresholdSigTransaction
 }
 
-func (sdk *Web1337) CreatePostQuantumTransaction(originShard, txType, pqcAlgorithm, yourAddress, yourPrivateKeyAsHex string, nonce uint, fee string, payload map[string]interface{}) (TransactionTemplate, error) {
+func (sdk *Web1337) CreatePostQuantumTransaction(txType, pqcAlgorithm, yourAddress, yourPrivateKeyAsHex string, nonce uint, fee string, payload map[string]interface{}) (TransactionTemplate, error) {
 
 	coreWorkflowVersion := sdk.Chains[sdk.CurrentChain].WorkflowVersion
 
@@ -115,11 +115,11 @@ func (sdk *Web1337) CreatePostQuantumTransaction(originShard, txType, pqcAlgorit
 
 	if pqcAlgorithm == "bliss" {
 
-		transaction.Sig = pqc.GenerateBlissSignature(yourPrivateKeyAsHex, fmt.Sprintf("%s%d%s%s%s%d%s", sdk.CurrentChain, coreWorkflowVersion, originShard, txType, payload, nonce, fee))
+		transaction.Sig = pqc.GenerateBlissSignature(yourPrivateKeyAsHex, fmt.Sprintf("%s%d%s%s%d%s", sdk.CurrentChain, coreWorkflowVersion, txType, payload, nonce, fee))
 
 	} else {
 
-		transaction.Sig = pqc.GenerateDilithiumSignature(yourPrivateKeyAsHex, fmt.Sprintf("%s%d%s%s%s%d%s", sdk.CurrentChain, coreWorkflowVersion, originShard, txType, payload, nonce, fee))
+		transaction.Sig = pqc.GenerateDilithiumSignature(yourPrivateKeyAsHex, fmt.Sprintf("%s%d%s%s%d%s", sdk.CurrentChain, coreWorkflowVersion, txType, payload, nonce, fee))
 
 	}
 

@@ -35,10 +35,9 @@ func TestGetBlockBySID(t *testing.T) {
 
 	sdkHandler, _ := web1337.NewWeb1337(myOptions)
 
-	shard := "shard_0"
-	indexInShard := uint(1000)
+	index := uint(1000)
 
-	blockData, err := sdkHandler.GetBlockBySID(shard, indexInShard)
+	blockData, err := sdkHandler.GetBlockBySID(index)
 
 	if err != nil {
 		t.Fatalf("Error fetching block by SID: %v", err)
@@ -47,7 +46,7 @@ func TestGetBlockBySID(t *testing.T) {
 	fmt.Println("Result: ", string(blockData))
 }
 
-func TestGetLatestNBlocksOnShard(t *testing.T) {
+func TestGetLatestNBlocks(t *testing.T) {
 	myOptions := web1337.Options{
 		NodeURL:         "http://localhost:7332",
 		ChainID:         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -56,14 +55,13 @@ func TestGetLatestNBlocksOnShard(t *testing.T) {
 
 	sdkHandler, _ := web1337.NewWeb1337(myOptions)
 
-	shard := "shard_0"
 	startIndex := uint(100)
 	limit := uint(10)
 
-	blockData, err := sdkHandler.GetLatestNBlocksOnShard(shard, startIndex, limit)
+	blockData, err := sdkHandler.GetLatestNBlocks(startIndex, limit)
 
 	if err != nil {
-		t.Fatalf("Error fetching latest N blocks on shard: %v", err)
+		t.Fatalf("Error fetching latest N blocks: %v", err)
 	}
 
 	fmt.Println("Result: ", string(blockData))

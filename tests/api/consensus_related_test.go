@@ -36,9 +36,8 @@ func TestGetAggregatedEpochFinalizationProof(t *testing.T) {
 	sdkHandler, _ := web1337.NewWeb1337(myOptions)
 
 	epochIndex := uint(0)
-	shard := "shard_0"
 
-	epochFinalizationProof, err := sdkHandler.GetAggregatedEpochFinalizationProof(epochIndex, shard)
+	epochFinalizationProof, err := sdkHandler.GetAggregatedEpochFinalizationProof(epochIndex)
 	if err != nil {
 		t.Fatalf("Error fetching aggregated epoch finalization proof: %v", err)
 	} else {
